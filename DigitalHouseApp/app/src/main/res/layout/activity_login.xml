@@ -1,26 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:minHeight="78dp"
+	tools:context=".LoginActivity">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/logo"
-        app:civ_border_color="@color/primary"
-        app:civ_border_width="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+	<de.hdodenhof.circleimageview.CircleImageView
+		android:id="@+id/circleImageView2"
+		android:layout_width="100dp"
+		android:layout_height="100dp"
+		android:layout_marginStart="8dp"
+		android:layout_marginLeft="8dp"
+		android:layout_marginTop="8dp"
+		android:layout_marginEnd="8dp"
+		android:layout_marginRight="8dp"
+		android:src="@drawable/logo"
+		app:civ_border_color="@color/primary"
+		app:civ_border_width="2dp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
 
+	<android.support.design.widget.TextInputLayout
+		android:id="@+id/inputEmail"
+		android:layout_width="368dp"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="8dp"
+		android:layout_marginLeft="8dp"
+		android:layout_marginTop="8dp"
+		android:layout_marginEnd="8dp"
+		android:layout_marginRight="8dp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/circleImageView2">
+
+		<android.support.design.widget.TextInputEditText
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/input_email" />
+	</android.support.design.widget.TextInputLayout>
+
+	<android.support.design.widget.TextInputLayout
+		android:id="@+id/inputSenha"
+		android:layout_width="368dp"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="8dp"
+		android:layout_marginLeft="8dp"
+		android:layout_marginTop="8dp"
+		android:layout_marginEnd="8dp"
+		android:layout_marginRight="8dp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/inputEmail">
+
+		<android.support.design.widget.TextInputEditText
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/input_password"
+			android:inputType="textPassword" />
+	</android.support.design.widget.TextInputLayout>
+
+	<TextView
+		android:id="@+id/txtRegisterNow"
+		android:layout_width="82dp"
+		android:layout_height="19dp"
+		android:layout_marginTop="8dp"
+		android:layout_marginEnd="8dp"
+		android:layout_marginRight="8dp"
+		android:text="@string/register_now"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/inputSenha" />
+
+	<Button
+		android:id="@+id/btnLogin"
+		android:layout_width="0dp"
+		android:layout_height="40dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginLeft="16dp"
+		android:layout_marginTop="44dp"
+		android:layout_marginEnd="16dp"
+		android:layout_marginRight="16dp"
+		android:background="@color/accent"
+		android:text="@string/input_login"
+		android:textColor="@color/icons"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/inputSenha" />
+
+	<View
+		android:id="@+id/divider"
+		android:layout_width="0dp"
+		android:layout_height="1dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginLeft="16dp"
+		android:layout_marginEnd="16dp"
+		android:layout_marginRight="16dp"
+		android:background="?android:attr/listDivider"
+		app:layout_constraintBottom_toBottomOf="@+id/textView2"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+	<TextView
+		android:id="@+id/textView2"
+		android:layout_width="28dp"
+		android:layout_height="22dp"
+		android:layout_marginTop="8dp"
+		android:layout_marginBottom="8dp"
+		android:background="@color/icons"
+		android:gravity="center"
+		android:text="OR"
+		app:layout_constraintBottom_toTopOf="@+id/btnFacebook"
+		app:layout_constraintEnd_toEndOf="@+id/divider"
+		app:layout_constraintStart_toStartOf="@+id/divider"
+		app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+	<Button
+		android:id="@+id/btnFacebook"
+		android:layout_width="0dp"
+		android:layout_height="40dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginLeft="16dp"
+		android:layout_marginEnd="16dp"
+		android:layout_marginRight="16dp"
+		android:layout_marginBottom="116dp"
+		android:background="@color/btn_facebook"
+		android:drawableLeft="@drawable/ic_facebook"
+		android:paddingLeft="20dp"
+		android:text="@string/input_login_facebook"
+		android:textColor="@color/icons"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="1.0"
+		app:layout_constraintStart_toStartOf="parent" />
+
+	<Button
+		android:id="@+id/btnTwitter"
+		android:layout_width="0dp"
+		android:layout_height="40dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginLeft="16dp"
+		android:layout_marginTop="8dp"
+		android:layout_marginEnd="16dp"
+		android:layout_marginRight="16dp"
+		android:background="@color/btn_twitter"
+		android:drawableLeft="@drawable/ic_twitter"
+		android:paddingLeft="20dp"
+		android:text="@string/input_login_twitter"
+		android:textColor="@color/icons"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/btnFacebook" />
+
+	<Button
+		android:id="@+id/btnGoogle"
+		android:layout_width="0dp"
+		android:layout_height="40dp"
+		android:layout_marginStart="16dp"
+		android:layout_marginLeft="16dp"
+		android:layout_marginTop="8dp"
+		android:layout_marginEnd="16dp"
+		android:layout_marginRight="16dp"
+		android:background="@color/btn_google"
+		android:text="@string/input_login_google"
+		android:textColor="@color/icons"
+		android:drawableLeft="@drawable/ic_google"
+		android:paddingLeft="20dp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/btnTwitter" />
 
 
 </android.support.constraint.ConstraintLayout>
