@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -30,8 +31,10 @@ public class LoginActivity extends AppCompatActivity {
                 String emailString = email.getText().toString();
                 String passwordString = password.getText().toString();
 
-                if(emailString.equals("fabio@digital.com") &&
-                        passwordString.equals("senha")){
+                LoginManager loginManager = new LoginManager();
+                String senha = loginManager.getSenhaPorUsuario(emailString);
+
+                if(senha != null && passwordString.equals(senha)){
                     bundle.putString("email", emailString);
                     intent.putExtras(bundle);
                     startActivity(intent);
