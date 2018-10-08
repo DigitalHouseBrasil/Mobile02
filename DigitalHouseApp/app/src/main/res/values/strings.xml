@@ -1,10 +1,10 @@
 <resources>
-	<string name="app_name">DigitalHouse App</string>
-	<string name="input_email">Email</string>
-	<string name="input_password">Password</string>
-	<string name="input_login">Log in</string>
-	<string name="input_login_facebook">Login with Facebook</string>
-	<string name="input_login_twitter">Login with Twitter</string>
-	<string name="input_login_google">Login with Google</string>
-	<string name="register_now">Register now</string>
+    <string name="app_name">DigitalHouse App</string>
+    <string name="input_email">Email</string>
+    <string name="input_password">Password</string>
+    <string name="input_login">Log in</string>
+    <string name="input_login_facebook">Login with Facebook</string>
+    <string name="input_login_twitter">Login with Twitter</string>
+    <string name="input_login_google">Login with Google</string>
+    <string name="register_now">Register now</string>
 </resources>
