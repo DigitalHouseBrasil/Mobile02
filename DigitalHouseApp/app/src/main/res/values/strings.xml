@@ -7,4 +7,7 @@
     <string name="input_login_twitter">Login with Twitter</string>
     <string name="input_login_google">Login with Google</string>
     <string name="register_now">Register now</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
