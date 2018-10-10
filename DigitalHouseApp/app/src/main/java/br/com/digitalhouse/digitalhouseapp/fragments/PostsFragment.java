@@ -12,7 +12,7 @@ import br.com.digitalhouse.digitalhouseapp.R;
 
 public class PostsFragment extends Fragment {
 
-    public PostsFragment(){
+    public PostsFragment() {
         // Construtor padrão
     }
 
