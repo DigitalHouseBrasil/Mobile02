@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HomeActivity">
+    tools:context=".HomeActivity"
+    android:padding="16dp">
 
     <FrameLayout
         android:id="@+id/content_one"
@@ -30,6 +31,5 @@
         android:onClick="changeFragmentTwo"
         android:backgroundTint="@color/primary"
         android:text="Fragment 2" />
-
 
 </LinearLayout>

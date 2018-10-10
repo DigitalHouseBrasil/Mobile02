@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 import br.com.digitalhouse.digitalhouseapp.R;
 
-public class PostsFragment extends Fragment{
+public class PostsFragment extends Fragment {
 
     public PostsFragment(){
-        //Construtor padrão
+        // Construtor padrão
     }
 
     @Nullable
