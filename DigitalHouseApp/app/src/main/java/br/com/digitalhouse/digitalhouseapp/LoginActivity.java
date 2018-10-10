@@ -44,6 +44,8 @@ public class LoginActivity extends AppCompatActivity {
                     bundle.putString("email", emailString);
                     intent.putExtras(bundle);
 
+
+
                     // Iniciamos a chamada para a proxima activity passando a intenção
                     startActivity(intent);
                 } else {
