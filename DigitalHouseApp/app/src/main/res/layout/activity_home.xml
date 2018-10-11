@@ -17,19 +17,5 @@
         android:layout_width="match_parent"
         android:layout_height="200dp" />
 
-    <android.support.v7.widget.AppCompatButton
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="changeFragmentOne"
-        android:text="Fragment 1" />
-
-    <android.support.v7.widget.AppCompatButton
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="changeFragmentTwo"
-        android:backgroundTint="@color/primary"
-        android:text="Fragment 2" />
 
 </LinearLayout>

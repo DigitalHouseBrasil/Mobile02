@@ -8,27 +8,18 @@ import android.view.View;
 
 import br.com.digitalhouse.digitalhouseapp.fragments.CommentsFragment;
 import br.com.digitalhouse.digitalhouseapp.fragments.PostsFragment;
+import br.com.digitalhouse.digitalhouseapp.interfaces.FragmentClick;
+import br.com.digitalhouse.digitalhouseapp.model.Post;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements FragmentClick{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-    }
-
-    public void changeFragmentOne(View view) {
-        // Instacia o fragmento de Posts
-        Fragment fragment = new PostsFragment();
 
         // Chama o replace passando uma instancia do fragmento de posts
-        replaceFragment(fragment, R.id.content_one, "POSTS");
-    }
-
-    public void changeFragmentTwo(View view) {
-
-        // Chama o replace passando uma instancia do fragmento de comentários
-        replaceFragment(new CommentsFragment(), R.id.content_two, "COMMENTS");
+        replaceFragment(new PostsFragment(), R.id.content_one, "POSTS");
     }
 
     // Substitui o conteiner com o fragment passado e adiciona a pilha
@@ -44,5 +35,18 @@ public class HomeActivity extends AppCompatActivity {
 
         // Comita/Finaliza a transação
         transaction.commit();
+    }
+
+    @Override
+    public void onItemClick(Post post) {
+        // Chama o replace passando uma instancia do fragmento de comentários
+        Fragment fragment = new CommentsFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("TEXT",post.getDescription());
+
+        fragment.setArguments(bundle);
+
+        replaceFragment(fragment, R.id.content_two, "COMMENTS");
     }
 }
