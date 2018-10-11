@@ -6,5 +6,14 @@
     android:background="@color/primary"
     tools:context=".fragments.CommentsFragment">
 
+    <TextView
+        android:id="@+id/textview_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
+        android:text="Texto"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
 
 </FrameLayout>
