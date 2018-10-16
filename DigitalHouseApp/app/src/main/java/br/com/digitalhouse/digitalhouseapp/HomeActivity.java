@@ -2,9 +2,11 @@ package br.com.digitalhouse.digitalhouseapp;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +14,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.digitalhouse.digitalhouseapp.adapter.SectionsFragmentPageAdapter;
 import br.com.digitalhouse.digitalhouseapp.fragments.CommentsFragment;
 import br.com.digitalhouse.digitalhouseapp.fragments.PostsFragment;
 import br.com.digitalhouse.digitalhouseapp.interfaces.FragmentClick;
@@ -19,6 +25,8 @@ import br.com.digitalhouse.digitalhouseapp.model.Post;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FragmentClick {
+
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +50,29 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Chama o replace passando uma instancia do fragmento de posts
-        replaceFragment(new PostsFragment(), R.id.container);
+        // Set up the ViewPager with the sections adapter.
+        viewPager = (ViewPager) findViewById(R.id.container);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+        // Inicializa o page adapter comuma lista de frgmentos
+        SectionsFragmentPageAdapter fragmentPageAdapter = new SectionsFragmentPageAdapter(getSupportFragmentManager(), getFragmentList());
+
+        // Seta o adapter no viewpager
+        viewPager.setAdapter(fragmentPageAdapter);
+
+        // adiciona os listeners no viewpager e no tablayout
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+    }
+
+    private List<Fragment> getFragmentList() {
+
+        List<Fragment> fragmentList = new ArrayList<>();
+        fragmentList.add(new PostsFragment());
+        fragmentList.add(new CommentsFragment());
+        fragmentList.add(new PostsFragment());
+
+        return fragmentList;
     }
 
     @Override
@@ -87,13 +116,14 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.nav_posts) {
             // Handle the camera action
             // Chama o replace passando uma instancia do fragmento de posts
-            replaceFragment(new PostsFragment(), R.id.container);
+            viewPager.setCurrentItem(0);
 
         } else if (id == R.id.nav_comments) {
             // Chama o replace passando uma instancia do fragmento de commets
-            replaceFragment(new CommentsFragment(), R.id.container);
+            viewPager.setCurrentItem(1);
 
         } else if (id == R.id.nav_events) {
+            viewPager.setCurrentItem(2);
 
         } else if (id == R.id.nav_colearning) {
 

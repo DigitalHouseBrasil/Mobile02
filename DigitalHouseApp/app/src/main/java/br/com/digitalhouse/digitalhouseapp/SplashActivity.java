@@ -10,12 +10,14 @@ import java.util.TimerTask;
 
 public class SplashActivity extends AppCompatActivity {
 
+    private Timer timer = new Timer();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        new Timer().schedule(new TimerTask() {
+        timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 jump(null);
@@ -25,6 +27,7 @@ public class SplashActivity extends AppCompatActivity {
 
     public void jump(View view) {
         startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+        timer.cancel();
         finish();
     }
 }
