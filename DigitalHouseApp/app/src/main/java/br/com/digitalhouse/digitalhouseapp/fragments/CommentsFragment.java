@@ -26,7 +26,6 @@ public class CommentsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_comments, container, false);
-
         TextView textViewTitle = view.findViewById(R.id.textview_title);
 
         String message = getArguments().getString("TEXT");
@@ -34,7 +33,6 @@ public class CommentsFragment extends Fragment {
         textViewTitle.setText(message);
 
         return view;
-
     }
 
 }
