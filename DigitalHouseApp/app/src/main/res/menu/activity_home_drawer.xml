@@ -17,10 +17,8 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/events" />
         <item
-            android:id="@+id/nav_colearnig"
+            android:id="@+id/nav_colearning"
             android:icon="@drawable/ic_menu_manage"
-            android:title="@string/co_learnning" />
+            android:title="@string/co_learning" />
     </group>
-
-
 </menu>

@@ -24,11 +24,16 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // Seta a toolbar na tela
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
+        // Pega a referencia do drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        //Configuta o togle
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -83,13 +88,14 @@ public class HomeActivity extends AppCompatActivity
             // Handle the camera action
             // Chama o replace passando uma instancia do fragmento de posts
             replaceFragment(new PostsFragment(), R.id.container);
+
         } else if (id == R.id.nav_comments) {
-            // Chama o replace passando uma instancia do fragmento de posts
+            // Chama o replace passando uma instancia do fragmento de commets
             replaceFragment(new CommentsFragment(), R.id.container);
 
         } else if (id == R.id.nav_events) {
 
-        } else if (id == R.id.nav_colearnig) {
+        } else if (id == R.id.nav_colearning) {
 
         }
 
@@ -105,7 +111,6 @@ public class HomeActivity extends AppCompatActivity
 
         // Substitu o container com o fragmento
         transaction.replace(container, fragment);
-
 
         // Comita/Finaliza a transação
         transaction.commit();
