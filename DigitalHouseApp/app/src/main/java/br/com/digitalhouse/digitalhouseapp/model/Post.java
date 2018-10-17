@@ -1,7 +1,6 @@
 package br.com.digitalhouse.digitalhouseapp.model;
 
 public class Post {
-
     private String imageUrl;
     private String title;
     private String date;
