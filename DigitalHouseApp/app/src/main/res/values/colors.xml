@@ -11,5 +11,7 @@
     <color name="facebook">#2f66ab</color>
     <color name="twiter">#00a2f1</color>
     <color name="google">#ce2a15</color>
+    <color name="white">#FFFFFF</color>
+    <color name="background">#E6E6E6</color>
 </resources>
 

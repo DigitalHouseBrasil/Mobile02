@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import br.com.digitalhouse.digitalhouseapp.R;
 
@@ -28,12 +27,11 @@ public class CommentsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_comments, container, false);
         TextView textViewTitle = view.findViewById(R.id.textview_title);
 
-        String message = getArguments().getString("TEXT");
+        //String message = getArguments().getString("TEXT");
 
-        textViewTitle.setText(message);
+        //textViewTitle.setText(message);
 
         return view;
-
     }
 
 }
