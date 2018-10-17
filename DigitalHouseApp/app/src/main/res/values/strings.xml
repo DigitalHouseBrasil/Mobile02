@@ -19,7 +19,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <!--Menu navigation-->
+    <!-- Menu navigation -->
     <string name="posts">Posts</string>
     <string name="comments">Comments</string>
     <string name="events">Events</string>

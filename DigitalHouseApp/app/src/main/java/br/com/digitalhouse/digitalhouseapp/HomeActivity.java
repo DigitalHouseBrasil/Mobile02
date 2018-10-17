@@ -18,18 +18,22 @@ import br.com.digitalhouse.digitalhouseapp.interfaces.FragmentClick;
 import br.com.digitalhouse.digitalhouseapp.model.Post;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,FragmentClick {
+        implements NavigationView.OnNavigationItemSelectedListener, FragmentClick {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // Seta a toolbar na tela
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
-
+        // Pega a referencia do drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        //Configuta o togle
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -82,14 +86,12 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.nav_posts) {
             // Handle the camera action
-
             // Chama o replace passando uma instancia do fragmento de posts
             replaceFragment(new PostsFragment(), R.id.container);
 
         } else if (id == R.id.nav_comments) {
-            // Chama o replace passando uma instancia do fragmento de posts
+            // Chama o replace passando uma instancia do fragmento de commets
             replaceFragment(new CommentsFragment(), R.id.container);
-
 
         } else if (id == R.id.nav_events) {
 
@@ -110,7 +112,6 @@ public class HomeActivity extends AppCompatActivity
         // Substitu o container com o fragmento
         transaction.replace(container, fragment);
 
-
         // Comita/Finaliza a transação
         transaction.commit();
     }
@@ -121,7 +122,6 @@ public class HomeActivity extends AppCompatActivity
         Fragment fragment = new CommentsFragment();
 
         Bundle bundle = new Bundle();
-
         bundle.putString("TEXT", post.getDescription());
 
         fragment.setArguments(bundle);
@@ -129,6 +129,3 @@ public class HomeActivity extends AppCompatActivity
         replaceFragment(fragment, R.id.container);
     }
 }
-
-
-
