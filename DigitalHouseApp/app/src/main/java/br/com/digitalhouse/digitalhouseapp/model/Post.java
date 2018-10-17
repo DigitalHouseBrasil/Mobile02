@@ -1,11 +1,11 @@
 package br.com.digitalhouse.digitalhouseapp.model;
 
 public class Post {
-    private  String imageUrl;
-    private  String title;
-    private  String date;
-    private  String description;
-    private  String author;
+    private String imageUrl;
+    private String title;
+    private String date;
+    private String description;
+    private String author;
 
     public Post() {
     }
