@@ -1,6 +1,9 @@
 package br.com.digitalhouse.digitalhouseapp.model;
 
-public class Post {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Post implements Parcelable {
     private String imageUrl;
     private String title;
     private String date;
@@ -17,6 +20,26 @@ public class Post {
         this.description = description;
         this.author = author;
     }
+
+    protected Post(Parcel in) {
+        imageUrl = in.readString();
+        title = in.readString();
+        date = in.readString();
+        description = in.readString();
+        author = in.readString();
+    }
+
+    public static final Creator<Post> CREATOR = new Creator<Post>() {
+        @Override
+        public Post createFromParcel(Parcel in) {
+            return new Post(in);
+        }
+
+        @Override
+        public Post[] newArray(int size) {
+            return new Post[size];
+        }
+    };
 
     public String getImageUrl() {
         return imageUrl;
@@ -56,5 +79,19 @@ public class Post {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(imageUrl);
+        dest.writeString(title);
+        dest.writeString(date);
+        dest.writeString(description);
+        dest.writeString(author);
     }
 }

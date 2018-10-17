@@ -21,7 +21,7 @@ import br.com.digitalhouse.digitalhouseapp.adapter.RecyclerViewPostAdapter;
 import br.com.digitalhouse.digitalhouseapp.interfaces.FragmentClick;
 import br.com.digitalhouse.digitalhouseapp.model.Post;
 
-public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.OnCardClickListener{
+public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.OnCardClickListener {
 
     private FragmentClick listener;
 
@@ -68,7 +68,7 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
     }
 
     // Mock (simulação) da lista --> poderia vir do SQL ou da API
-    private List<Post> createPostList(){
+    private List<Post> createPostList() {
         List<Post> postList = new ArrayList<>();
 
         Post post1 = new Post();
