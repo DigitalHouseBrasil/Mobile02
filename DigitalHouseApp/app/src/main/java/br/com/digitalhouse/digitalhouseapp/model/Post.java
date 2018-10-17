@@ -1,21 +1,28 @@
 package br.com.digitalhouse.digitalhouseapp.model;
 
 public class Post {
-
+    private String imageUrl;
     private String title;
     private String date;
     private String description;
     private String author;
-    private String imageUrl;
 
     public Post() {
     }
 
-    public Post(String title, String date, String description, String author, String imageUrl) {
+    public Post(String imageUrl, String title, String date, String description, String author) {
+        this.imageUrl = imageUrl;
         this.title = title;
         this.date = date;
         this.description = description;
         this.author = author;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
@@ -49,13 +56,5 @@ public class Post {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 }

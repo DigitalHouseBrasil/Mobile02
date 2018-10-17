@@ -38,12 +38,14 @@ public class LoginActivity extends AppCompatActivity {
                 String passwordString = password.getText().toString();
 
                 // validação do dados do usuário
-                if (emailString.equals("fabio@digital.com") && passwordString.equals("senha")) {
+                LoginManager loginManager = new LoginManager();
+                String senha = loginManager.getSenhaPorUsuario(emailString);
+
+                if (senha != null && passwordString.equals(senha)) {
 
                     // Iserindo os dados no bundle para envio
                     bundle.putString("email", emailString);
                     intent.putExtras(bundle);
-
 
 
                     // Iniciamos a chamada para a proxima activity passando a intenção
