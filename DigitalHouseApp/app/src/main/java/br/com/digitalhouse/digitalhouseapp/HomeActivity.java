@@ -43,20 +43,74 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         // Chama o replace passando uma instancia do fragmento de posts
-        replaceFragment(new PostsFragment(), R.id.content_one, "POSTS");
+        replaceFragment(new PostsFragment(), R.id.container);
     }
 
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.home, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_posts) {
+            // Handle the camera action
+            // Chama o replace passando uma instancia do fragmento de posts
+            replaceFragment(new PostsFragment(), R.id.container);
+
+        } else if (id == R.id.nav_comments) {
+            // Chama o replace passando uma instancia do fragmento de commets
+            replaceFragment(new CommentsFragment(), R.id.container);
+
+        } else if (id == R.id.nav_events) {
+
+        } else if (id == R.id.nav_colearning) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 
     // Substitui o conteiner com o fragment passado e adiciona a pilha
-    public void replaceFragment(Fragment fragment, int container, String stack) {
+    public void replaceFragment(Fragment fragment, int container) {
         //Inicia uma transação
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         // Substitu o container com o fragmento
         transaction.replace(container, fragment);
-
-        // Adiciona a pilha de fragmentos
-        transaction.addToBackStack(stack);
 
         // Comita/Finaliza a transação
         transaction.commit();
@@ -72,6 +126,6 @@ public class HomeActivity extends AppCompatActivity
 
         fragment.setArguments(bundle);
 
-        replaceFragment(fragment, R.id.content_one, "COMMENTS");
+        replaceFragment(fragment, R.id.container);
     }
 }
