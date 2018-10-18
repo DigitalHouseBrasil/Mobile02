@@ -21,6 +21,9 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/co_learning" />
     </group>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> d9afd9fd54f85d407173750ba014c90d58949327
 </menu>

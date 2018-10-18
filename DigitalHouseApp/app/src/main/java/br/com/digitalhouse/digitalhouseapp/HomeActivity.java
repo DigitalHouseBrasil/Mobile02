@@ -19,15 +19,21 @@ import br.com.digitalhouse.digitalhouseapp.model.Post;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FragmentClick {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // Seta a toolbar na tela
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
+        // Pega a referencia do drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        //Configuta o togle
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -36,6 +42,7 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // Chama o replace passando uma instancia do fragmento de posts
         replaceFragment(new PostsFragment(), R.id.container);
     }
 
@@ -78,9 +85,12 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_posts) {
-            replaceFragment(new PostsFragment(), R.id.container);
             // Handle the camera action
+            // Chama o replace passando uma instancia do fragmento de posts
+            replaceFragment(new PostsFragment(), R.id.container);
+
         } else if (id == R.id.nav_comments) {
+            // Chama o replace passando uma instancia do fragmento de commets
             replaceFragment(new CommentsFragment(), R.id.container);
 
         } else if (id == R.id.nav_events) {
