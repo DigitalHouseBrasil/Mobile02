@@ -25,4 +25,6 @@
     <string name="comments">Comentários</string>
     <string name="events">Eventos</string>
     <string name="co_learning">Co-learning</string>
+    <string name="tab_text_posts">Posts</string>
+    <string name="tab_text_events">Eventos</string>
 </resources>
