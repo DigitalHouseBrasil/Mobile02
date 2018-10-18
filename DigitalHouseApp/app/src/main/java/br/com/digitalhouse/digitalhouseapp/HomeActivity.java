@@ -2,16 +2,24 @@ package br.com.digitalhouse.digitalhouseapp;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.digitalhouse.digitalhouseapp.adapter.SectionsPageAdapter;
 import br.com.digitalhouse.digitalhouseapp.fragments.CommentsFragment;
 import br.com.digitalhouse.digitalhouseapp.fragments.PostsFragment;
 import br.com.digitalhouse.digitalhouseapp.interfaces.FragmentClick;
@@ -20,35 +28,74 @@ import br.com.digitalhouse.digitalhouseapp.model.Post;
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FragmentClick {
 
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
+    private  Toolbar toolbar;
+    private DrawerLayout drawer;
+    private NavigationView navigationView;
+    private SearchView searchView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Seta a toolbar na tela
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        initViews();
         setSupportActionBar(toolbar);
 
-
         // Pega a referencia do drawer
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        configureDrawerLayout();
+        ConfigureViewPager();
 
-        //Configuta o togle
+    }
+
+    private void ConfigureViewPager() {
+        // adiciona os listeners no viewpager e no tablayout
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+
+//crio uma instancia do page adapter com uma lista de fragments
+
+        SectionsPageAdapter pageAdapter = new SectionsPageAdapter(getSupportFragmentManager(),getFragmentList());
+
+// Seto o adapter view pager
+        viewPager.setAdapter(pageAdapter);
+    }
+
+    private void configureDrawerLayout() {
+        //Configura o togle
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
 
-        // Chama o replace passando uma instancia do fragmento de posts
-        replaceFragment(new PostsFragment(), R.id.container);
+    private void initViews() {
+        // Seta a toolbar na tela
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        tabLayout = findViewById(R.id.tabs);
+        viewPager = findViewById(R.id.container);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+    }
+
+    private List<Fragment> getFragmentList() {
+        List<Fragment>fragments = new ArrayList<>();
+
+        fragments.add(new PostsFragment());
+        fragments.add(new CommentsFragment());
+        fragments.add(new PostsFragment());
+
+              return fragments;
+
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -60,6 +107,26 @@ public class HomeActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
+
+        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setIconified(false);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                Log.i("LOG","query" + query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.i("LOG","Novo texto" + newText);
+
+                return false;
+            }
+        });
+
         return true;
     }
 
@@ -71,8 +138,8 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_search) {
+            return super.onOptionsItemSelected(item);
         }
 
         return super.onOptionsItemSelected(item);
@@ -86,20 +153,20 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.nav_posts) {
             // Handle the camera action
-            // Chama o replace passando uma instancia do fragmento de posts
-            replaceFragment(new PostsFragment(), R.id.container);
-
-        } else if (id == R.id.nav_comments) {
-            // Chama o replace passando uma instancia do fragmento de commets
-            replaceFragment(new CommentsFragment(), R.id.container);
+            // Chama instancia do fragmento de posts
+            viewPager.setCurrentItem(0);
 
         } else if (id == R.id.nav_events) {
+            // Chama instancia do fragmento de eventos
+            viewPager.setCurrentItem(1);
 
         } else if (id == R.id.nav_colearning) {
+            // Chama instancia do fragmento de co-learning
+        viewPager.setCurrentItem(2);
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
