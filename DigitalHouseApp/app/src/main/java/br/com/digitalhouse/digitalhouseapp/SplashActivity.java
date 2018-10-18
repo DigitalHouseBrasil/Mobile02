@@ -10,21 +10,21 @@ import java.util.TimerTask;
 
 public class SplashActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_splash);
 
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                jump(null);
-            }
-        }, 3000);
-    }
+		new Timer().schedule(new TimerTask() {
+			@Override
+			public void run() {
+				jump(null);
+			}
+		}, 200);
+	}
 
-    public void jump(View view) {
-        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-        finish();
-    }
+	public void jump(View view) {
+		startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+		finish();
+	}
 }

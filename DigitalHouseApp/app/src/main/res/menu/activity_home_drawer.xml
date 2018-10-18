@@ -9,10 +9,6 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/posts" />
         <item
-            android:id="@+id/nav_comments"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/comments" />
-        <item
             android:id="@+id/nav_events"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/events" />
