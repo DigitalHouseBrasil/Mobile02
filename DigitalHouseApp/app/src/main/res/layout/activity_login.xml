@@ -28,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
+            android:text="alexandre@digital.com"
             android:inputType="textEmailAddress" />
     </android.support.design.widget.TextInputLayout>
 

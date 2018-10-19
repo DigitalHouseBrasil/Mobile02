@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import br.com.digitalhouse.digitalhouseapp.R;
@@ -55,6 +57,7 @@ public class RecyclerViewPostAdapter extends RecyclerView.Adapter<RecyclerViewPo
         private TextView titulo;
         private TextView descricao;
         private ImageView share;
+        private  ImageView imagePost;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -62,12 +65,14 @@ public class RecyclerViewPostAdapter extends RecyclerView.Adapter<RecyclerViewPo
             titulo = itemView.findViewById(R.id.post_item_title_id);
             descricao = itemView.findViewById(R.id.post_item_description_id);
             share = itemView.findViewById(R.id.image_share_post_id);
+            imagePost = itemView.findViewById(R.id.imageView);
         }
 
         // Gerencia conteudo da celula baseado num objeto Post
         public void bind(final Post post) {
             titulo.setText(post.getTitle());
             descricao.setText(post.getDescription());
+            Picasso.get().load(post.getImageUrl()).into(imagePost);
 
             share.setOnClickListener(new View.OnClickListener() {
                 @Override
