@@ -15,6 +15,7 @@ public class LoginManager {
         usuarios.put("jose@digital.com", "senha543");
         usuarios.put("teste@digital.com", "teste");
         usuarios.put("admin@digital.com", "admin");
+        usuarios.put("a","a");
     }
 
     public String getSenhaPorUsuario(String usuario) {
