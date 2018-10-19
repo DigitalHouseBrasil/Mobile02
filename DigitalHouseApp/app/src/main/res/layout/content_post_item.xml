@@ -11,7 +11,7 @@
     android:padding="8dp">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/post_image_id"
         android:layout_width="wrap_content"
         android:layout_height="220dp"
         android:scaleType="centerCrop"
@@ -30,7 +30,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/post_image_id" />
 
     <TextView
         android:id="@+id/post_item_description_id"
