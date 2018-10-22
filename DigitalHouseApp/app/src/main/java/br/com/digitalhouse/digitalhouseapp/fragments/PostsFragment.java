@@ -19,12 +19,15 @@ import java.util.List;
 import br.com.digitalhouse.digitalhouseapp.R;
 import br.com.digitalhouse.digitalhouseapp.adapter.RecyclerViewPostAdapter;
 import br.com.digitalhouse.digitalhouseapp.interfaces.FragmentClick;
+import br.com.digitalhouse.digitalhouseapp.interfaces.ServiceListener;
 import br.com.digitalhouse.digitalhouseapp.model.Post;
 import br.com.digitalhouse.digitalhouseapp.model.dao.PostDAO;
 
-public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.OnCardClickListener{
+public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.OnCardClickListener, ServiceListener {
 
     private FragmentClick listener;
+    private List<Post> posts = new ArrayList<>();
+    private RecyclerViewPostAdapter adapter;
 
     public PostsFragment() {
         // Construtor padrão
@@ -50,10 +53,13 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view_posts_id);
 
         PostDAO dao = new PostDAO();
+        adapter = new RecyclerViewPostAdapter(posts, this);
 
-        recyclerView.setAdapter(new RecyclerViewPostAdapter(dao.getPosts(getContext()), this));
+        recyclerView.setAdapter(adapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        dao.getPosts(getContext(), this);
 
         Button btnSend = view.findViewById(R.id.btn_send);
         btnSend.setOnClickListener(new View.OnClickListener() {
@@ -73,5 +79,16 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
     @Override
     public void onShareClick(Post post) {
         listener.onItemClick(post);
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+        Log.i("LOG", "ERROR: " + throwable.getMessage());
+    }
+
+    @Override
+    public void onSuccess(Object obj) {
+        posts = (List<Post>) obj;
+        adapter.update(posts);
     }
 }
