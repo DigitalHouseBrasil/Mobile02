@@ -70,10 +70,6 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
         return view;
     }
 
-    // Mock (simulação) da lista --> poderia vir do SQL ou da API
-
-
-
     @Override
     public void onShareClick(Post post) {
         listener.onItemClick(post);

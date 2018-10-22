@@ -59,14 +59,13 @@ public class RecyclerViewPostAdapter extends RecyclerView.Adapter<RecyclerViewPo
         private ImageView share;
         private ImageView image;
 
-
         public ViewHolder(View itemView) {
             super(itemView);
 
             titulo = itemView.findViewById(R.id.post_item_title_id);
             descricao = itemView.findViewById(R.id.post_item_description_id);
             share = itemView.findViewById(R.id.image_share_post_id);
-            image = itemView.findViewById(R.id.imageView);
+            image = itemView.findViewById(R.id.post_image_id);
         }
 
         // Gerencia conteudo da celula baseado num objeto Post

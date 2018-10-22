@@ -30,12 +30,12 @@ public class PostDAO {
             //Criar um objeto da classe Gson que permita analisar o JSON de forma simples.
             Gson gson = new Gson();
 
-            //Utilizando o objeto gson e o método fromJson, fazer a análise do arquivo
-            // que temos no bufferReaderIn, usando como “molde” a classe News.
+            //Utilizando o objeto gson e o método fromJson, fazer a análise do arquivo que temos no
+            // bufferReaderIn, usando como “molde” a classe News.
             Post[] postArray = gson.fromJson(bufferReaderIn, Post[].class);
 
-            //transforma Array[] em ArraList
-            postList.addAll(Arrays.asList(postArray));
+            // Transforma Array[] em ArrayList
+            postList = Arrays.asList(postArray);
 
         }catch (IOException exception){
             Log.e("JSON", "erro ao ler arquivo posts.json");
