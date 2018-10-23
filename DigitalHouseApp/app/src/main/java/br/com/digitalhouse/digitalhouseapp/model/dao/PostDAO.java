@@ -19,26 +19,29 @@ import br.com.digitalhouse.digitalhouseapp.model.Post;
 public class PostDAO {
 
     public List<Post> getPosts(Context context) {
-
         List<Post> postList = new ArrayList<>();
+
         try {
-
-            Gson gson = new Gson();
-
             //Criar um stream para ler o arquivo JSON.
             AssetManager manager = context.getAssets();
             InputStream newsJson = manager.open("posts.json");
             BufferedReader bufferReaderIn = new BufferedReader(new InputStreamReader(newsJson));
 
-//Utilizando o objeto gson e o método fromJson, fazer a análise do arquivo que temos no bufferReaderIn, usando como “molde” a classe News.
+            //Criar um objeto da classe Gson que permita analisar o JSON de forma simples.
+            Gson gson = new Gson();
 
+            //Utilizando o objeto gson e o método fromJson, fazer a análise do arquivo que temos no
+            // bufferReaderIn, usando como “molde” a classe News.
             Post[] postArray = gson.fromJson(bufferReaderIn, Post[].class);
 
+            // Transforma Array[] em ArrayList
             postList = Arrays.asList(postArray);
 
-        } catch (IOException exception) {
+        }catch (IOException exception){
             Log.e("JSON", "erro ao ler arquivo posts.json");
         }
+
         return postList;
     }
+
 }

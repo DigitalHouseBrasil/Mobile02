@@ -51,7 +51,7 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
 
         PostDAO dao = new PostDAO();
 
-        recyclerView.setAdapter(new RecyclerViewPostAdapter(dao.getPosts(getContext()),this));
+        recyclerView.setAdapter(new RecyclerViewPostAdapter(dao.getPosts(getContext()), this));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -69,8 +69,6 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
 
         return view;
     }
-
-
 
     @Override
     public void onShareClick(Post post) {

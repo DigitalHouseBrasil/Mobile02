@@ -74,6 +74,8 @@ public class RecyclerViewPostAdapter extends RecyclerView.Adapter<RecyclerViewPo
             descricao.setText(post.getDescription());
             Picasso.get().load(post.getImageUrl()).into(image);
 
+            Picasso.get().load(post.getImageUrl()).into(image);
+
             share.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

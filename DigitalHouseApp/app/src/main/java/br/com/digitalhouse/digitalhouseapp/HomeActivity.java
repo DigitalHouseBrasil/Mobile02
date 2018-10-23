@@ -30,7 +30,7 @@ public class HomeActivity extends AppCompatActivity
 
     private ViewPager viewPager;
     private TabLayout tabLayout;
-    private  Toolbar toolbar;
+    private Toolbar toolbar;
     private DrawerLayout drawer;
     private NavigationView navigationView;
     private SearchView searchView;
@@ -42,34 +42,28 @@ public class HomeActivity extends AppCompatActivity
 
         initViews();
         setSupportActionBar(toolbar);
-
-        // Pega a referencia do drawer
-         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         configureDrawerLayout();
-        ConfigureViewPager();
-
+        configureViewPager();
     }
 
-    private void ConfigureViewPager() {
+    private void configureViewPager() {
         // adiciona os listeners no viewpager e no tablayout
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
 
-//crio uma instancia do page adapter com uma lista de fragments
+        // Crio um instancia do pageadapter com uma lista de fragmentos
+        SectionsPageAdapter pageAdapter = new SectionsPageAdapter(getSupportFragmentManager(), getFragmentList());
 
-        SectionsPageAdapter pageAdapter = new SectionsPageAdapter(getSupportFragmentManager(),getFragmentList());
-
-// Seto o adapter view pager
+        // Seto o adapter no viewpager
         viewPager.setAdapter(pageAdapter);
     }
 
     private void configureDrawerLayout() {
-        //Configura o togle
+        //Configuta o togle
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -77,25 +71,24 @@ public class HomeActivity extends AppCompatActivity
         // Seta a toolbar na tela
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        // Pega a referencia do drawer
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         tabLayout = findViewById(R.id.tabs);
         viewPager = findViewById(R.id.container);
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     }
 
     private List<Fragment> getFragmentList() {
-        List<Fragment>fragments = new ArrayList<>();
+        List<Fragment> fragments = new ArrayList<>();
 
         fragments.add(new PostsFragment());
         fragments.add(new CommentsFragment());
         fragments.add(new PostsFragment());
 
-              return fragments;
-
+        return fragments;
     }
 
     @Override
     public void onBackPressed() {
-
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -114,15 +107,13 @@ public class HomeActivity extends AppCompatActivity
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
-                Log.i("LOG","query" + query);
+                Log.i("LOG", "query: " + query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Log.i("LOG","Novo texto" + newText);
-
+                Log.i("LOG", "Novo texto: " + newText);
                 return false;
             }
         });
@@ -153,19 +144,17 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.nav_posts) {
             // Handle the camera action
-            // Chama instancia do fragmento de posts
+            // Chama uma instancia do fragmento de posts
             viewPager.setCurrentItem(0);
 
         } else if (id == R.id.nav_events) {
-            // Chama instancia do fragmento de eventos
+            // Chama uma instancia do fragmento de eventos
             viewPager.setCurrentItem(1);
 
         } else if (id == R.id.nav_colearning) {
-            // Chama instancia do fragmento de co-learning
-        viewPager.setCurrentItem(2);
-
+            // Chama uma instancia do fragmento de co-learning
+            viewPager.setCurrentItem(2);
         }
-
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
