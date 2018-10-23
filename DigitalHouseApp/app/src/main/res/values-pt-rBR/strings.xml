@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">DigitalHouse App</string>
+    <string name="app_name">DigitalHouse</string>
     <string name="input_email">Email</string>
     <string name="input_password">Senha</string>
     <string name="input_login">Entrar</string>
@@ -25,4 +25,8 @@
     <string name="comments">Comentários</string>
     <string name="events">Eventos</string>
     <string name="co_learning">Co-learning</string>
+    <string name="tab_text_posts">Posts</string>
+    <string name="tab_text_events">Eventos</string>
+    <string name="tab_text_colearning">Co-learling</string>
+    <string name="search">Search</string>
 </resources>
