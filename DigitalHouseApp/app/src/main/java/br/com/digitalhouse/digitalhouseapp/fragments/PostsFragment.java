@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +20,15 @@ import java.util.List;
 import br.com.digitalhouse.digitalhouseapp.R;
 import br.com.digitalhouse.digitalhouseapp.adapter.RecyclerViewPostAdapter;
 import br.com.digitalhouse.digitalhouseapp.interfaces.FragmentClick;
+import br.com.digitalhouse.digitalhouseapp.interfaces.ServiceListener;
 import br.com.digitalhouse.digitalhouseapp.model.Post;
 import br.com.digitalhouse.digitalhouseapp.model.dao.PostDAO;
 
-public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.OnCardClickListener{
+public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.OnCardClickListener, ServiceListener {
 
     private FragmentClick listener;
+    private RecyclerViewPostAdapter adapter;
+    private List<Post> posts = new ArrayList<>();
 
     public PostsFragment() {
         // Construtor padrão
@@ -51,7 +55,11 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
 
         PostDAO dao = new PostDAO();
 
-        recyclerView.setAdapter(new RecyclerViewPostAdapter(dao.getPost(getContext()), this));
+        adapter = new RecyclerViewPostAdapter(posts, this);
+
+        recyclerView.setAdapter(adapter);
+
+        dao.getPost(getContext(), this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -76,5 +84,17 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
     @Override
     public void onShareClick(Post post) {
         listener.onItemClick(post);
+    }
+
+    @Override
+    public void onSuccess(Object object) {
+        posts = (List<Post>) object;
+        adapter.update(posts);
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+        Toast.makeText(getContext(), "Error: "+throwable.getMessage(), Toast.LENGTH_SHORT).show();
+
     }
 }
