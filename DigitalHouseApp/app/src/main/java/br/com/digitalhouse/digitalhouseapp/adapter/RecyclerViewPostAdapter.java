@@ -1,6 +1,5 @@
 package br.com.digitalhouse.digitalhouseapp.adapter;
 
-import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -83,5 +82,11 @@ public class RecyclerViewPostAdapter extends RecyclerView.Adapter<RecyclerViewPo
                 }
             });
         }
+    }
+
+    public void update(List<Post>posts){
+        postList.clear();
+        postList.addAll(posts);
+        notifyDataSetChanged();
     }
 }
