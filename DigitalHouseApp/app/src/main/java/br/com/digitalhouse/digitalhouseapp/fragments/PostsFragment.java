@@ -30,7 +30,6 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
     private RecyclerViewPostAdapter adapter;
     private List<Post> posts = new ArrayList<>();
 
-
     public PostsFragment() {
         // Construtor padrão
     }
@@ -56,7 +55,7 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
 
         PostDAO dao = new PostDAO();
 
-        adapter = new RecyclerViewPostAdapter(posts,this);
+        adapter = new RecyclerViewPostAdapter(posts, this);
 
         recyclerView.setAdapter(adapter);
 
@@ -75,7 +74,6 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
             }
         });
 
-
         return view;
     }
 
@@ -92,8 +90,6 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
 
     @Override
     public void onError(Throwable throwable) {
-
-        Toast.makeText(getContext(), "Error: " + throwable.getMessage(),Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(getContext(), "Error: " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }

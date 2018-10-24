@@ -84,10 +84,9 @@ public class RecyclerViewPostAdapter extends RecyclerView.Adapter<RecyclerViewPo
         }
     }
 
-        public void update(List<Post> posts){
-            postList.clear();
-            postList.addAll(posts);
-            notifyDataSetChanged();
-
-        }
+    public void update(List<Post> posts) {
+        postList.clear();
+        postList.addAll(posts);
+        notifyDataSetChanged();
+    }
 }
