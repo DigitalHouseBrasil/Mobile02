@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //Iniciamos a chamada para a activity de Registro passando uma intenção
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                startActivity(new Intent(view.getContext(), RegisterActivity.class));
             }
         });
     }
