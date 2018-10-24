@@ -59,24 +59,23 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
 
         recyclerView.setAdapter(adapter);
 
-        dao.getPosts(getContext(),this);
+        dao.getPosts(getContext(), this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         Button btnSend = view.findViewById(R.id.btn_send);
-        btnSend.setOnClickListener(v -> {
-            Post post = new Post();
-            post.setDescription("Descrição do post enviado");
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Post post = new Post();
+                post.setDescription("Descrição do post enviado");
 
-            listener.onItemClick(post);
+                listener.onItemClick(post);
+            }
         });
-
 
         return view;
     }
-
-    // Mock (simulação) da lista --> poderia vir do SQL ou da API
-
 
     @Override
     public void onShareClick(Post post) {
@@ -86,11 +85,11 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
     @Override
     public void onSuccess(Object object) {
         posts = (List<Post>) object;
-        adapter. update(posts);
+        adapter.update(posts);
     }
 
     @Override
     public void onError(Throwable throwable) {
-        Toast.makeText(getContext(), "Error" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Error: " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }
