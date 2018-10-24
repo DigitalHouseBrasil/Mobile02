@@ -72,7 +72,6 @@ public class RecyclerViewPostAdapter extends RecyclerView.Adapter<RecyclerViewPo
         public void bind(final Post post) {
             titulo.setText(post.getTitle());
             descricao.setText(post.getDescription());
-            Picasso.get().load(post.getImageUrl()).into(image);
 
             Picasso.get().load(post.getImageUrl()).into(image);
 
@@ -85,7 +84,7 @@ public class RecyclerViewPostAdapter extends RecyclerView.Adapter<RecyclerViewPo
         }
     }
 
-    public void update (List<Post> posts){
+    public void update(List<Post> posts) {
         postList.clear();
         postList.addAll(posts);
         notifyDataSetChanged();

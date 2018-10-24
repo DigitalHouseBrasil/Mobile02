@@ -28,7 +28,7 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
 
     private FragmentClick listener;
     private RecyclerViewPostAdapter adapter;
-    private List<Post>posts= new ArrayList<>();
+    private List<Post> posts = new ArrayList<>();
 
     public PostsFragment() {
         // Construtor padrão
@@ -55,13 +55,13 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
 
         PostDAO dao = new PostDAO();
 
-        adapter = new RecyclerViewPostAdapter(posts, this );
+        adapter = new RecyclerViewPostAdapter(posts, this);
 
         recyclerView.setAdapter(adapter);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        dao.getPosts(getContext(), this);
 
-        dao.getPosts(getContext(),this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         Button btnSend = view.findViewById(R.id.btn_send);
         btnSend.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +73,6 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
                 listener.onItemClick(post);
             }
         });
-
 
         return view;
     }
@@ -87,11 +86,10 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
     public void onSuccess(Object object) {
         posts = (List<Post>) object;
         adapter.update(posts);
-
     }
 
     @Override
     public void onError(Throwable throwable) {
-        Toast.makeText(getContext(), "Error:"+throwable.getMessage(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Error: " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }
