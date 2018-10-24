@@ -27,7 +27,6 @@ import br.com.digitalhouse.digitalhouseapp.model.dao.PostDAO;
 public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.OnCardClickListener, ServiceListener {
 
     private FragmentClick listener;
-
     private RecyclerViewPostAdapter adapter;
     private List<Post> posts = new ArrayList<>();
 
@@ -75,7 +74,6 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
             }
         });
 
-
         return view;
     }
 
@@ -92,7 +90,6 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
 
     @Override
     public void onError(Throwable throwable) {
-        Toast.makeText(getContext(),"Error: " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(getContext(), "Error: " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }
