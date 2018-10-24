@@ -12,13 +12,9 @@ public interface API {
     Call<List<Post>> getPosts();
 
     @GET("/posts")
-<<<<<<< HEAD
     Observable<List<Post>> getPostsRx();
-
-=======
-    Observable<List<Post>> getPostsRX();
 
     /*@POST("/posts")
     Call<Boolean> create(@Body Post post);*/
->>>>>>> e1aef20639c6180cbcaf10dc3f093b07d873b37e
+
 }
