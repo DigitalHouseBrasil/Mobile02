@@ -8,6 +8,7 @@ public class LoginManager {
     Map<String, String> usuarios = new HashMap<>();
 
     public LoginManager() {
+        usuarios.put("tairo@digital.com", "123");
         usuarios.put("fabio@digital.com", "senha");
         usuarios.put("alexandre@digital.com", "senha123");
         usuarios.put("joao@digital.com", "senha321");

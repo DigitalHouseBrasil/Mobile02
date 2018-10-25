@@ -59,7 +59,7 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
 
         recyclerView.setAdapter(adapter);
 
-        dao.getPost(getContext(), this);
+        dao.getPosts(getContext(), this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -74,12 +74,8 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
             }
         });
 
-
         return view;
     }
-
-    // Mock (simulação) da lista --> poderia vir do SQL ou da API
-
 
     @Override
     public void onShareClick(Post post) {
@@ -94,7 +90,6 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
 
     @Override
     public void onError(Throwable throwable) {
-        Toast.makeText(getContext(), "Error: "+throwable.getMessage(), Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(getContext(), "Error: " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }

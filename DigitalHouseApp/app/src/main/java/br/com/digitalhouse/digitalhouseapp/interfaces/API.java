@@ -14,5 +14,6 @@ public interface API {
     @GET("/posts")
     Observable<List<Post>> getPostsRX();
 
-
+    /*@POST("/posts")
+    Call<Boolean> create(@Body Post post);*/
 }

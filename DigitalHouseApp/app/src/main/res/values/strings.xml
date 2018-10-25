@@ -26,5 +26,6 @@
     <string name="co_learning">Co-learning</string>
     <string name="tab_text_posts">Posts</string>
     <string name="tab_text_events">Events</string>
-    <string name="tab_text_colearning">Co-learning</string>
+    <string name="tab_text_colearning">Co-learling</string>
+    <string name="search">Search</string>
 </resources>

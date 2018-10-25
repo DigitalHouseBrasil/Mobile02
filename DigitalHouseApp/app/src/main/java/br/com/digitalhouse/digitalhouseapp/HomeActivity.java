@@ -35,7 +35,6 @@ public class HomeActivity extends AppCompatActivity
     private NavigationView navigationView;
     private SearchView searchView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +44,6 @@ public class HomeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         configureDrawerLayout();
         configureViewPager();
-
-
     }
 
     private void configureViewPager() {
@@ -54,10 +51,10 @@ public class HomeActivity extends AppCompatActivity
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
 
-        //Criar uma instancia do pageAdapter com uma lista de fragmentos
+        // Crio um instancia do pageadapter com uma lista de fragmentos
         SectionsPageAdapter pageAdapter = new SectionsPageAdapter(getSupportFragmentManager(), getFragmentList());
 
-        //Setar o Adapter no viewpager
+        // Seto o adapter no viewpager
         viewPager.setAdapter(pageAdapter);
     }
 
@@ -67,14 +64,13 @@ public class HomeActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void initViews() {
         // Seta a toolbar na tela
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         // Pega a referencia do drawer
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         tabLayout = findViewById(R.id.tabs);
@@ -104,21 +100,24 @@ public class HomeActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
+
         searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setIconified(false);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.i("LOG", "Query: "+query);
+                Log.i("LOG", "query: " + query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Log.i("LOG", "Novo texto: "+newText);
+                Log.i("LOG", "Novo texto: " + newText);
                 return false;
             }
         });
+
         return true;
     }
 
@@ -132,7 +131,6 @@ public class HomeActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
             return super.onOptionsItemSelected(item);
-
         }
 
         return super.onOptionsItemSelected(item);
@@ -146,17 +144,16 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.nav_posts) {
             // Handle the camera action
-            // Chama o replace passando uma instancia do fragmento de posts
+            // Chama uma instancia do fragmento de posts
             viewPager.setCurrentItem(0);
 
         } else if (id == R.id.nav_events) {
-            // Chama o replace passando uma instancia do fragmento de eventos
+            // Chama uma instancia do fragmento de eventos
             viewPager.setCurrentItem(1);
 
         } else if (id == R.id.nav_colearning) {
-            // Chama o replace passando uma instancia do fragmento de co-learning
+            // Chama uma instancia do fragmento de co-learning
             viewPager.setCurrentItem(2);
-
         }
 
         drawer.closeDrawer(GravityCompat.START);
