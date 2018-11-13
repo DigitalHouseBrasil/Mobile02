@@ -3,6 +3,7 @@ package br.com.digitalhouse.sqliteroom.model;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.provider.ContactsContract;
 
 import java.util.List;
 
