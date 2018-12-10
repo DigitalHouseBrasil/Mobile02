@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +20,15 @@ import java.util.List;
 import br.com.digitalhouse.digitalhouseapp.R;
 import br.com.digitalhouse.digitalhouseapp.adapter.RecyclerViewPostAdapter;
 import br.com.digitalhouse.digitalhouseapp.interfaces.FragmentClick;
+import br.com.digitalhouse.digitalhouseapp.interfaces.ServiceListener;
 import br.com.digitalhouse.digitalhouseapp.model.Post;
+import br.com.digitalhouse.digitalhouseapp.model.dao.PostDAO;
 
-public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.OnCardClickListener{
+public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.OnCardClickListener, ServiceListener {
 
     private FragmentClick listener;
+    private RecyclerViewPostAdapter adapter;
+    private List<Post> posts = new ArrayList<>();
 
     public PostsFragment() {
         // Construtor padrão
@@ -48,7 +53,13 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view_posts_id);
 
-        recyclerView.setAdapter(new RecyclerViewPostAdapter(createPostList(), this));
+        PostDAO dao = new PostDAO();
+
+        adapter = new RecyclerViewPostAdapter(posts, this);
+
+        recyclerView.setAdapter(adapter);
+
+        dao.getPosts(getContext(), this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -63,34 +74,22 @@ public class PostsFragment extends Fragment implements RecyclerViewPostAdapter.O
             }
         });
 
-
         return view;
-    }
-
-    // Mock (simulação) da lista --> poderia vir do SQL ou da API
-    private List<Post> createPostList(){
-        List<Post> postList = new ArrayList<>();
-
-        Post post1 = new Post();
-        post1.setTitle("Nova turma iniciada");
-        post1.setDescription("Em setembro começou a nova turma de Marketing Digital");
-        postList.add(post1);
-
-        Post post2 = new Post();
-        post2.setTitle("Cardapio alterado");
-        post2.setDescription("A partir do próximo você terá novidades na cafeteria");
-        postList.add(post2);
-
-        Post post3 = new Post();
-        post3.setTitle("Social Day");
-        post3.setDescription("Conheça os alunos de outras turmas e pratique!");
-        postList.add(post3);
-
-        return postList;
     }
 
     @Override
     public void onShareClick(Post post) {
         listener.onItemClick(post);
+    }
+
+    @Override
+    public void onSuccess(Object object) {
+        posts = (List<Post>) object;
+        adapter.update(posts);
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+        Toast.makeText(getContext(), "Error: " + throwable.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }
